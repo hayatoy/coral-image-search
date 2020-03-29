@@ -48,7 +48,7 @@ def frames():
     t0 = time.time()
     feature = inference.extract_feature(im)
     t1 = time.time()
-    res = session.post(CLOUDRUN_URL,
+    res = session.post("https://" + CLOUDRUN_URL,
                        json={"feature": feature.tolist()})
     t2 = time.time()
 

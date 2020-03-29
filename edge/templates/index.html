@@ -49,14 +49,14 @@
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="https://github.com/hayatoy/coral-image-search">GitHub</a>
         </nav>
       </div>
     </header>
     <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">Title</span>
+      <span class="mdl-layout-title">Edge TPU Image Search</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="https://github.com/hayatoy/coral-image-search">GitHub</a>
       </nav>
     </div>
     <main class="mdl-layout__content">
@@ -76,7 +76,10 @@
               Local Inference Time: <span id="txt-inference-time" class="mdl-color-text--green">xx</span> ms<br />
               Cloud Run Latency: <span id="txt-run-latency" class="mdl-color-text--green">xx</span> ms
             </div>
-            <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="display:none;"></div>
+            <div class="mdl-card__supporting-text loading" style="display:none;">
+              <span class="mdl-color-text--red">Cloud Run cold start..</span>
+            </div>
+            <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate loading" style="display:none;"></div>
           </div>
           <div class="mdl-cell mdl-cell--8-col mdl-card" style="border-radius:8px;">
             <div class="mdl-card__supporting-text">
@@ -118,9 +121,9 @@
     eventSource.addEventListener('images', function(e) {
       var data = JSON.parse(e.data);
       if (data.hasOwnProperty("msg")){
-        $('#loading').show();
+        $('.loading').show();
       }else{
-        $('#loading').hide();
+        $('.loading').hide();
         var $items = $('<div class="grid-item"><img src="' + data.url + '"></div>');
         $('#txt-inference-time').text(data.inference_time.toFixed(2));
         $('#txt-run-latency').text(data.cloudrun_time.toFixed(2));

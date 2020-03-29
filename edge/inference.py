@@ -38,7 +38,6 @@ class Inference(object):
     if not not self.interpreter:
       return
     with self.interpreter_lock:
-      print("Edge TPU delegate")
       self.interpreters[DELEGATES['tpu']] = tflite.Interpreter(
         model_path=TFLITE_TPU_PATH,
         experimental_delegates=[tflite.load_delegate(EDGETPU_SHARED_LIB, {})])
@@ -48,7 +47,6 @@ class Inference(object):
       self.input_indexes[DELEGATES['tpu']] = input_details[0]['index']
       self.output_indexes[DELEGATES['tpu']] = output_details[0]['index']
 
-      print("init interpreter_cpu")
       self.interpreters[DELEGATES['cpu']] = tf.lite.Interpreter(
           model_path=TFLITE_PATH)
       self.interpreters[DELEGATES['cpu']].allocate_tensors()
@@ -58,7 +56,7 @@ class Inference(object):
       self.output_indexes[DELEGATES['cpu']] = output_details[0]['index']
 
     self.change_interpreter(delegate)
-    print(input_details)
+    # print(input_details)
 
   def change_interpreter(self, delegate='tpu'):
     """ Change interpreter type
