@@ -5,6 +5,10 @@ On Cloud Run, find closest feature vector from pre-computed spatial index.
 
 ![capture](./capture.gif)
 
+## Architecture
+
+![architecture](./architecture.png)
+
 ## Prerequisites
 
 ### Hardware:
