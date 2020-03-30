@@ -24,3 +24,5 @@ $ apt install python3-opencv
 $ export CLOUDRUN_URL="coral-image-search-xxx.a.run.app"
 $ python3 server.py
 ```
+
+Once the server is ready, Open `localhost:8080` on your browser.
